@@ -1,0 +1,62 @@
+WHAT I PROMPTED:
+
+Please help me debug this code:
+
+  public String findLongestHours(int[][] hours, String[][] names){
+    int maxHours = 0;
+    String currentName = "";
+    for(int r = 0; r < hours.length; r++){
+      for(int c = 0; c < hours[0].length; c++){
+        if(hours[r][c] > maxHours){
+          maxHours = hours[r][c];
+          currentName = names[r][c];
+        }
+      }
+      return "I played " + name + " for " + maxHours + " hours";
+    }
+  }(how can I fix this)
+
+----------------------------------------------------------------------
+WHAT RESPONSE I RECEIVED
+
+----------------------------------------------------------------------
+
+You’re super close — just a couple small Java mistakes tripping you up. Let’s fix them step-by-step.
+
+Problems in your code
+
+return is inside the outer loop
+→ That makes the method stop after the first row.
+
+Variable name mismatch
+→ You used currentName but returned name.
+
+Missing return at the end (if loops finish).
+
+public String findLongestHours(int[][] hours, String[][] names) {
+  int maxHours = 0;
+  String currentName = "";
+
+  for (int r = 0; r < hours.length; r++) {
+    for (int c = 0; c < hours[0].length; c++) {
+      if (hours[r][c] > maxHours) {
+        maxHours = hours[r][c];
+        currentName = names[r][c];
+      }
+    }
+  }
+
+  return "I played " + currentName + " for " + maxHours + " hours";
+}
+Quick intuition
+Think of it like:
+
+Scan every box in the 2D array
+
+Keep the biggest number you’ve seen
+
+Remember the name that matches it
+
+Only return after checking everything
+
+If you want, I can also show a test example with sample arrays so you can see it working in AP CSA style.
